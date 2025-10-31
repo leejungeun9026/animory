@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{include/user}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content">
+  <div class="row">
+    <div class="col col-sm-10 col-md-8 mx-auto">
+      <div class="page_title mb-4">
+        <h2 class="memomentKkukkkuk" mb-2>회원가입</h2>
+        <p>반려동물과 나의 기억저장소 <b class="text-primary">Animal Memory <i class="fa-solid fa-paw"></i></b></p>
+      </div>
+      <div class="card rounded-3">
+        <div class="card-body p-4">
+          <form action="/member/joinRegister" method="post">
+            <h4 class="memomentKkukkkuk mb-2">사용자 정보</h4>
+            <div class="mb-3">
+              <label class="form-label" for="username">아이디<span class="text-danger"> (필수)</span></label>
+              <input type="text" class="form-control mb-2" name="username" id="username" placeholder="아이디를 입력해주세요">
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password">비밀번호<span class="text-danger"> (필수)</span></label>
+              <input type="password" class="form-control mb-2" name="password" id="password" placeholder="비밀번호를 입력해주세요">
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="nickname">닉네임<span class="text-danger"> (필수)</span></label>
+              <input type="text" class="form-control mb-2" name="nickname" id="nickname" placeholder="닉네임을 입력해주세요">
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="tel">연락처<span class="text-danger"> (필수)</span></label>
+              <input type="text" class="form-control mb-2" name="tel" id="tel" placeholder="예) 010-1234-5678">
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="sido">거주 지역<span class="text-danger"> (필수)</span></label>
+              <div class="d-flex align-items-center gap-2">
+                <select name="sido" id="sido" class="form-select">
+                  <option value="" data-sido-id="">시/도</option>
+                </select>
+                <span>&gt;</span>
+                <select name="sigungu" id="sigungu" class="form-select" disabled>
+                  <option value="">시/군/구</option>
+                </select>
+              </div>
+            </div>
+            <h4 class="memomentKkukkkuk mb-2">반려동물 정보</h4>
+
+
+
+            <button type="button" class="btn btn-lg btn-main w-100 mb-3">회원가입</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script layout:fragment="pagescript" th:inline="javascript">
+    const sido = document.querySelector("#sido")
+    const sigungu = document.querySelector("#sigungu")
+
+    async function loadSido(){
+        const {data} = await axios.get('/api/regions/sido');
+        sido.innerHTML = `<option value="">시/도</option>` +
+            data.map(s=>`<option value="${s.name}" data-sido-id="${s.id}">${s.name}</option>`).join('');
+    }
+    async function loadSigungu(sidoId) {
+        if (!sidoId) {
+            sigungu.innerHTML = '<option value="">시/군/구</option>';
+            sigungu.disabled = true;
+            return;
+        }
+        const { data } = await axios.get('/api/regions/sigungu', { params: { sidoId } });
+        sigungu.innerHTML = '<option value="">시/군/구</option>' +
+            data.map(g => `<option value="${g.name}">${g.name}</option>`).join('');
+        sigungu.disabled = false;
+    }
+    sido.addEventListener('change', (e) => {
+        const selectedOption = e.target.selectedOptions[0]; // 선택된 <option> 요소
+        const sidoId = selectedOption.dataset.sidoId;       // data-sidoid 값 읽기
+        loadSigungu(sidoId);
+    });
+
+    // 초기 시/도 로드
+    loadSido()
+</script>

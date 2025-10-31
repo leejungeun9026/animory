@@ -3,8 +3,29 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<div layout:fragment="wrap">
+<div layout:fragment="content">
+  <div class="row">
+    <div class="col col-sm-8 col-md-4 mx-auto">
+      <div class="page_title mb-4">
+        <h2 class="memomentKkukkkuk" mb-2>로그인</h2>
+        <p>반려동물과 나의 기억저장소 <b class="text-primary">Animal Memory <i class="fa-solid fa-paw"></i></b></p>
+      </div>
+      <div class="card rounded-3">
+        <div class="card-body p-4">
+          <form action="/member/login" method="post">
+            <input type="text" class="form-control mb-2" name="username" placeholder="아이디를 입력해주세요" aria-label="아이디">
+            <input type="password" class="form-control mb-3" name="password" placeholder="비밀번호를 입력해주세요" aria-label="비밀번호">
+            <button type="button" class="btn btn-lg btn-main w-100 mb-3">로그인</button>
+            <div class="text-center">
+              <a href="/member/join" class="small text-secondary">회원가입 바로가기</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script layout:fragment="pagescript" th:inline="javascript">
+
 </script>
