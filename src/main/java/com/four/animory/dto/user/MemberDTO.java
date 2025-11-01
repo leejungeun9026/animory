@@ -17,6 +17,8 @@ public class MemberDTO {
     @NotEmpty
     String username;
     @NotEmpty
+    String password;
+    @NotEmpty
     String nickname;
     @NotEmpty
     String tel;

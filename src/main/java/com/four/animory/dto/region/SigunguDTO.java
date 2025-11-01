@@ -1,6 +1,6 @@
 package com.four.animory.dto.region;
 
-import com.four.animory.domain.SigunguEntity;
+import com.four.animory.domain.region.SigunguEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

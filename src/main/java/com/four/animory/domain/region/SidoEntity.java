@@ -1,4 +1,4 @@
-package com.four.animory.domain;
+package com.four.animory.domain.region;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

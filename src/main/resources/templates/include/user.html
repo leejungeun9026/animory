@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
@@ -82,19 +84,25 @@
         </ul>
         <ul class="sign">
           <!-- 로그인 전 -->
-          <li>
-            <a class="" href="/member/login">로그인</a>
-          </li>
-          <li>/</li>
-          <li>
-            <a class="" href="/member/join">회원가입</a>
-          </li>
+          <th:block sec:authorize="!isAuthenticated()">
+            <li>
+              <a class="btn btn-sm btn-outline-main" href="/member/login">로그인</a>
+            </li>
+            <li>
+              <a class="btn btn-sm btn-main" href="/member/join">회원가입</a>
+            </li>
+          </th:block>
           <!-- //로그인 전 -->
 
           <!-- 로그인 후 -->
-          <li class="d-none">
-            <a class="" href="/member/mypage">마이페이지</a>
-          </li>
+          <th:block sec:authorize="isAuthenticated()">
+            <li>
+              <a class="btn btn-sm btn-main-outline" href="/member/mypage">마이페이지</a>
+            </li>
+            <li>
+              <a class="btn btn-sm btn-gray" href="/member/logout">로그아웃</a>
+            </li>
+          </th:block>
           <!-- //로그인 후 -->
         </ul>
       </nav>
@@ -107,17 +115,17 @@
   </header>
   <!-- /* header 끝 */ -->
 
-  <!-- /* content(본문) 시작 */ -->
-  <div id="content">
+  <!-- /* main_container(본문) 시작 */ -->
+  <div id="main_container">
     <div class="inner">
       <div class="container-fluid py-4 py-md-5">
         <div layout:fragment="content">
         </div>
       </div>
     </div>
-    <!-- /* // inner 끝 */ -->
+    <!-- /* inner 끝 */ -->
   </div>
-  <!-- /* content 끝 */ -->
+  <!-- /* main_container 끝 */ -->
 
   <footer class="footer" id="footer">
 

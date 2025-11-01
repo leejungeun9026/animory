@@ -1,4 +1,4 @@
-package com.four.animory.domain;
+package com.four.animory.domain.region;
 
 import jakarta.persistence.*;
 import lombok.Getter;

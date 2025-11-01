@@ -34,7 +34,7 @@ public class CustomSecurityConfig {
             .anyRequest().authenticated())
         .formLogin(formLoginConfigure -> formLoginConfigure
             .loginPage("/member/login")
-            .loginProcessingUrl("/loginRegister")
+            .loginProcessingUrl("/member/loginRegister")
             .usernameParameter("username")
             .passwordParameter("password")
             .defaultSuccessUrl("/", false)
