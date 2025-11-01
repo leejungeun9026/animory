@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "region_sigungu")
-@org.hibernate.annotations.Immutable
 @Getter
 @NoArgsConstructor
 public class SigunguEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,4 +1,4 @@
-package com.four.animory.controller.sitter;
+package com.four.animory.controller;
 
 import com.four.animory.dto.sitter.SitterBoardDTO;
 import com.four.animory.service.sitter.SitterService;
@@ -26,7 +26,16 @@ public class SitterController {
 
   @PostMapping("/register")
   public String registerPost(SitterBoardDTO sitterBoardDTO) {
+    if(sitterBoardDTO.getCategory().equals("구해요")){
+        sitterBoardDTO.setState("구직중");
+    } else if (sitterBoardDTO.getCategory().equals("일해요")){
+        sitterBoardDTO.setState("구인중");
+    }
     sitterService.registerSitterBoard(sitterBoardDTO);
     return "redirect:/sitter/list";
+  }
+
+  @GetMapping("/view")
+  public void viewGet(){
   }
 }

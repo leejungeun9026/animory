@@ -1,4 +1,4 @@
-package com.four.animory.controller.region;
+package com.four.animory.controller;
 
 import com.four.animory.dto.region.SidoDTO;
 import com.four.animory.dto.region.SigunguDTO;
