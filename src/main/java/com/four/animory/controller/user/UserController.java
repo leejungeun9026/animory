@@ -1,4 +1,4 @@
-package com.four.animory.controller;
+package com.four.animory.controller.user;
 
 import com.four.animory.dto.user.UserRegisterDTO;
 import com.four.animory.service.user.UserService;

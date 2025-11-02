@@ -8,7 +8,7 @@ import com.four.animory.dto.user.UserRegisterDTO;
 
 public interface UserService {
   int register(UserRegisterDTO userRegisterDTO);
-
+  MemberDTO getMemberByUsername(String username);
 
   default Member dtoToEntity(MemberDTO memberDTO){
     return Member.builder()

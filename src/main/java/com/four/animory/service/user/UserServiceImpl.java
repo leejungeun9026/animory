@@ -50,4 +50,8 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+    @Override
+    public MemberDTO getMemberByUsername(String username) {
+        return entityToDTO(memberRepository.findByUsername(username));
+    }
 }
