@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,4 +31,6 @@ public class MemberDTO {
     @NotEmpty
     String sigungu;
     boolean sitter;
+    LocalDateTime regDate;
+    LocalDateTime updateDate;
 }

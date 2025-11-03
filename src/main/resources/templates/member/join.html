@@ -105,6 +105,7 @@
         sido.innerHTML = `<option value="">시/도</option>` +
             data.map(s=>`<option value="${s.name}" data-sido-id="${s.id}">${s.name}</option>`).join('');
     }
+
     async function loadSigungu(sidoId) {
         if (!sidoId) {
             sigungu.innerHTML = '<option value="">시/군/구</option>';
@@ -116,6 +117,7 @@
             data.map(g => `<option value="${g.name}">${g.name}</option>`).join('');
         sigungu.disabled = false;
     }
+
     sido.addEventListener('change', (e) => {
         const selectedOption = e.target.selectedOptions[0]; // 선택된 <option> 요소
         const sidoId = selectedOption.dataset.sidoId;       // data-sidoid 값 읽기

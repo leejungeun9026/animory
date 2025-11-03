@@ -33,3 +33,8 @@ header {
 .page_title {
     height: 46px;
 }
+
+.text-link {
+    text-decoration: underline;
+    text-underline-offset: 0.125em !important;
+}

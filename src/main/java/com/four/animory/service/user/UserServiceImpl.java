@@ -3,6 +3,7 @@ package com.four.animory.service.user;
 import com.four.animory.domain.user.Member;
 import com.four.animory.domain.user.Pet;
 import com.four.animory.dto.user.MemberDTO;
+import com.four.animory.dto.user.MemberListPetCountDTO;
 import com.four.animory.dto.user.PetDTO;
 import com.four.animory.dto.user.UserRegisterDTO;
 import com.four.animory.repository.user.MemberRepository;
@@ -13,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,8 +53,36 @@ public class UserServiceImpl implements UserService {
     }
   }
 
-    @Override
-    public MemberDTO getMemberByUsername(String username) {
-        return entityToDTO(memberRepository.findByUsername(username));
+  @Override
+  public MemberDTO getMemberByUsername(String username) {
+      return entityToDTO(memberRepository.findByUsername(username));
+  }
+
+
+  @Override
+  public List<MemberListPetCountDTO> getMemberListPetCount() {
+    return memberRepository.findAllWithPetCount();
+  }
+
+  @Override
+  public boolean getSitterById(Long mid) {
+    return memberRepository.findSitterById(mid);
+  }
+
+  @Override
+  public void modifySitter(MemberDTO memberDTO) {
+    Member member = memberRepository.findMemberById(memberDTO.getMid());
+    member.setSitter(memberDTO.isSitter());
+    memberRepository.save(member);
+  }
+
+  @Override
+  public List<PetDTO> getPetListByMemberId(Long mid) {
+    List<Pet> petList = petRepository.findPetsByMemberId(mid);
+    List<PetDTO> petDTOs = new ArrayList<>();
+    for (Pet pet : petList) {
+      petDTOs.add(entityToDTO(pet));
     }
+    return petDTOs;
+  }
 }
