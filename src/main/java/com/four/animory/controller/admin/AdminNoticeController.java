@@ -6,17 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/notice")
 @Log4j2
-public class AdminController {
-    @GetMapping({"", "/login"})
-    public String admin(){
-        return "/admin/login";
-    }
+public class AdminNoticeController {
+  @GetMapping("/list")
+  public void list(){
+  }
 
-    @GetMapping({"/", "/dashboard"})
-    public String dashboard(){
-        return "redirect:/admin/notice/list";
-    }
+  @GetMapping("/register")
+  public void registerGet(){
+  }
 
+  @GetMapping("/view")
+  public void view(){
+  }
 }
