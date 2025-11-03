@@ -52,7 +52,7 @@ public class UserServiceTest {
                 .password(bCryptPasswordEncoder.encode("1234"))
                 .nickname("관리자")
                 .email("admin@naver.com")
-                .tel("010-0000-0000")
+                .tel("010-0000-1234")
                 .sido("부산광역시")
                 .sigungu("부산진구")
                 .role("ADMIN")

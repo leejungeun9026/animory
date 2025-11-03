@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Log4j2
 @RequestMapping("/sitter")
 public class SitterController {
-    @Value("${com.jungeun.jpaboard2.upload.path}")
-    private String uploadRootPath;
+//    @Value("${com.four.animory.upload.path}")
+//    private String uploadRootPath;
 
   @Autowired
   private SitterService sitterService;
